@@ -7,6 +7,18 @@ app.get("/",(req,res)=>{
     res.send("Hello there this is your first output");
 
 })
+
+app.get("/jokes",(req,res) => {
+    const jokes =[{
+
+        id:"1",
+        joke:"Joke"
+    }]
+    res.send(jokes);
+
+})
+
+
 app.get("/login",(req,res)=>{
     res.send("You are at login page");
 
