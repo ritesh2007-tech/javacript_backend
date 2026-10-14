@@ -1,10 +1,7 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import { DB_NAME } from '../utils/constants.js';
-
+import 'dotenv/config';
 import { MongoClient } from 'mongodb';
 
-const client = new MongoClient("mongodb+srv://ritesh:ritesh2007@cluster0.r257pxu.mongodb.net/?appName=Cluster0");
+const client = new MongoClient(process.env.MONGODB_URI);
 
 export async function connectToMongoDB() {
   try {
