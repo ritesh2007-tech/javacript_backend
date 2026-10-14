@@ -1,18 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { DB_NAME } from '../utils/constants';
+import { DB_NAME } from '../utils/constants.js';
 
-const connectDb = async () => {
+import { MongoClient } from 'mongodb';
 
-    try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        console.log("DB Connected: ",connectionInstance.connection.host);
+const client = new MongoClient("mongodb+srv://ritesh:ritesh2007@cluster0.r257pxu.mongodb.net/?appName=Cluster0");
 
-    } catch (error) {
-        console.log("Connection Failed: ",error);
-        process.exit(1);
-        
-    }
+export async function connectToMongoDB() {
+  try {
+    await client.connect();
+    console.log("You successfully connected to MongoDB!");
+    return client;
+  } catch (err) {
+    console.dir(err);
+  }
 }
 
-export default connectDb;
+// Call this only when your application terminates
+export async function disconnectFromMongoDB() {
+  await client.close();
+}
