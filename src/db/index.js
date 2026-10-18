@@ -17,3 +17,4 @@ export async function connectToMongoDB() {
 export async function disconnectFromMongoDB() {
   await client.close();
 }
+
